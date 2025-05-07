@@ -37,8 +37,29 @@ public class GhostAlgorithms {
 	// Versucht, einen Zug in eine bestimmte Richtung zu machen
 	private static boolean attemptMove(Ghost ghost, Direction direction) {
 		// TODO Aufgabe 1 d)
-		ghost.move(direction);
-		return true;
+
+		if (ghost.isValidMove(direction)) {
+			switch (direction) {
+				case UP:
+					ghost.setY(ghost.getY() - 1);
+					break;
+				case DOWN:
+					ghost.setY(ghost.getY() + 1);
+					break;
+				case LEFT:
+					ghost.setX(ghost.getX() - 1);
+					break;
+				case RIGHT:
+					ghost.setX(ghost.getX() + 1);
+					break;
+			}
+			return true;
+		}
+		return false;
+
+
+		//ghost.move(direction);
+		//return true;
 	}
 
 	// Bonusaufgabe: Verschiedene Suchalgorithmen für Geister

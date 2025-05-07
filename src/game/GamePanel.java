@@ -28,6 +28,9 @@ public class GamePanel extends JPanel {
 		initializeComponents();
 		startGameLoop();
 		// TODO: nach #2a // entfernen
+		setBackground(Color.BLACK);
+		setOpaque(true);
+
 		// addKeyListener(listener);
 	}
 

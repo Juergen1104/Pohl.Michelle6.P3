@@ -24,12 +24,35 @@ public class PacMan extends GameEntity {
 	public void drawPac(Graphics2D g2) {
 		// Aufgabe #1b
 		// TODO: Code hier einfügen
+		int xPixel = getX() * Constants.TILE_SIZE;
+		int yPixel = getY() * Constants.TILE_SIZE;
+
+		BufferedImage currentImage = null;
+
+		switch (getDirection()) {
+			case UP: currentImage = pacmanUpImage; break;
+			case DOWN: currentImage = pacmanDownImage; break;
+			case LEFT: currentImage = pacmanLeftImage; break;
+			case RIGHT: currentImage = pacmanRightImage; break;
+		}
+
+		if (currentImage != null) {
+			g2.drawImage(currentImage, xPixel, yPixel, Constants.TILE_SIZE, Constants.TILE_SIZE, null);
+		}
 	}
 	
 	// Lädt die Bilder für Pac-Man und das Herz
 	private void loadImages() {
 		//Aufgabe #1b 
-		//TODO: Code hier einfügen 
+		//TODO: Code hier einfügen
+		try {
+			pacmanUpImage = ImageIO.read(new File("Resources/pacman_up.png"));
+			pacmanDownImage = ImageIO.read(new File("Resources/pacman_down.png"));
+			pacmanLeftImage = ImageIO.read(new File("Resources/pacman_left.png"));
+			pacmanRightImage = ImageIO.read(new File("Resources/pacman_right.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

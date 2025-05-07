@@ -43,6 +43,38 @@ public abstract class GameEntity {
 	// Aufgabe #1d #1e
 	// TODO: Code hier einfügen
 
+	public boolean isValidMove(Direction direction) {
+		int newX = getX();
+		int newY = getY();
+
+		switch (direction) {
+			case UP:
+				newY--;
+				break;
+			case DOWN:
+				newY++;
+				break;
+			case LEFT:
+				newX--;
+				break;
+			case RIGHT:
+				newX++;
+				break;
+		}
+
+		// Spielfeldgrenzen prüfen
+		if (newX < 0 || newY < 0 || newY >= Maze.maze.length || newX >= Maze.maze[0].length) {
+			return false;
+		}
+
+		// Wandprüfung
+		return Maze.maze[newY][newX] != Type.WALL;
+	}
+
+	public static boolean collisionDetection(GameEntity entity1, GameEntity entity2) {
+		return entity1.getX() == entity2.getX() && entity1.getY() == entity2.getY();
+	}
+
 	public int getX() {
 		return x;
 	}
