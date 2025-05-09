@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 import objects.Ghost;
 import objects.PacListener;
@@ -31,7 +32,7 @@ public class GamePanel extends JPanel {
 		setBackground(Color.BLACK);
 		setOpaque(true);
 
-		// addKeyListener(listener);
+		addKeyListener(listener);
 	}
 
 	private void initializeComponents() {
@@ -74,8 +75,45 @@ public class GamePanel extends JPanel {
 
 		// Aufgabe #4a #4b
 		// TODO: Methoden aufrufen
+		drawScore(g2);
+		displayEndScreenIfGameOver(g2);
+
 	}
 
 	// Aufgabe #4a #4b
 	// TODO: Methode um End-Screen und Score anzuzeigen
+
+
+	public void drawScore(Graphics2D g) {
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("Arial", Font.BOLD, 18));
+
+		int score = Maze.calculateScore();
+		getHeight();
+		g.drawString("Score: " + score, 10, Constants.TILE_SIZE * Constants.HEIGHT -4 );
+	}
+
+	public void displayEndScreenIfGameOver(Graphics2D g) {
+		if (!gameLoop.running) {
+			// Hintergrund schwarz
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, getWidth(), getHeight());
+
+			// Game Over Text
+			g.setColor(Color.RED);
+			g.setFont(new Font("Arial", Font.BOLD, 48));
+			String gameOver = "GAME OVER";
+			int x = (getWidth() - g.getFontMetrics().stringWidth(gameOver)) / 2;
+			int y = getHeight() / 2 - 20;
+			g.drawString(gameOver, x, y);
+
+			// Finaler Score
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("Arial", Font.PLAIN, 24));
+			String finalScore = "Final Score: " + Maze.calculateScore();
+			int scoreX = (getWidth() - g.getFontMetrics().stringWidth(finalScore)) / 2;
+			g.drawString(finalScore, scoreX, y + 40);
+		}
+	}
+
 }

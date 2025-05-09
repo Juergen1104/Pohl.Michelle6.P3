@@ -36,5 +36,9 @@ public class ScoreThread extends Thread {
 	private void checkGameStatus() {
 		// Aufgabe 4 c)
 		// TODO: Code hier einfügen
+		if (gamePanel.pacMan.getLives() <= 0 || gamePanel.gameLoop.score >= Constants.MAX_SCORE) {
+			gamePanel.gameLoop.stopLoop();
+			gamePanel.repaint();
+		}
 	}
 }

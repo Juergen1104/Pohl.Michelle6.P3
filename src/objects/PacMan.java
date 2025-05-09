@@ -19,6 +19,7 @@ public class PacMan extends GameEntity {
 		super(x, y);
 		this.direction = Direction.RIGHT;
 		this.lives = 3;
+		loadImages();
 	}
 
 	public void drawPac(Graphics2D g2) {
@@ -46,10 +47,10 @@ public class PacMan extends GameEntity {
 		//Aufgabe #1b 
 		//TODO: Code hier einfügen
 		try {
-			pacmanUpImage = ImageIO.read(new File("Resources/pacman_up.png"));
-			pacmanDownImage = ImageIO.read(new File("Resources/pacman_down.png"));
-			pacmanLeftImage = ImageIO.read(new File("Resources/pacman_left.png"));
-			pacmanRightImage = ImageIO.read(new File("Resources/pacman_right.png"));
+			pacmanUpImage = ImageIO.read(new File("resources/pacmanUp.png"));
+			pacmanDownImage = ImageIO.read(new File("resources/pacmanDown.png"));
+			pacmanLeftImage = ImageIO.read(new File("resources/pacmanLeft.png"));
+			pacmanRightImage = ImageIO.read(new File("resources/pacmanRight.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

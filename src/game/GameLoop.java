@@ -26,17 +26,19 @@ public class GameLoop {
 
 		// Initialisiere die Threads für Spielkomponenten
 		// TODO: Threads initialisieren
-		this.pacManThread = null;
+		this.pacManThread = new Thread(new PacManThread(gamePanel));
 		this.ghostThread = new Thread(new GhostThread(gamePanel));
-		this.collisionThread = null;
+		this.collisionThread = new Thread(new CollisionThread(gamePanel));
 		this.scoreThread = new Thread(new ScoreThread(gamePanel));
 	}
 
 	public void start() {
 		running = true;
 		// TODO: Threads starten
+		pacManThread.start();
 		ghostThread.start();
 		scoreThread.start();
+		collisionThread.start();
 	}
 
 	public void stopLoop() {
